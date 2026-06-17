@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Somativa 1º DS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <main class="main-container">
+        <div class="content=wrapper">
+            <div id="conteudo-do-app" class="app-content">
+                <div class="layout-grid">
+                    <div class="sidebar-col">
+
+                        <!-- formulario -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <h2 id="form-titulo" class="form-title">Tarefa</h2>
+                                <button id="btn-cancelar" class="btn-cancel hidden">Cancelar Edição</button>
+                            </div>
+
+                            <form id="form-tarefa" class="form-body">
+
+                                <!-- id da tabela Tarefa -->
+                                <input type="hidden" id="tarefa-id" value="">
+
+                                <div class="form-group">
+                                    <label class="form-label" for="tarefa-titulo">Título <span
+                                            class="required">*</span></label>
+                                    <input type="text" id="tarefa-titulo" class="form-control" placeholder="Nome da tarefa"
+                                        required>
+                                </div>
+
+                                <!-- email do Tarefa  -->
+                                <div class="form-group">
+                                    <label class="form-label" for="tarefa-descricao">Descrição <span
+                                            class="required">*</span></label>
+                                    <input type="text" id="tarefa-descricao" class="form-control-1"
+                                        required>
+                                </div>
+
+                                <!-- status Tarefa  -->
+                                <div class="form-group">
+
+                                    <button type="submit" id="btn-salvar" class="btn-submit">
+                                        <i class="fas fa-save"></i>
+                                        <span id="btn-salvar-text">Salvar Tarefa</span>
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div> <!---- /FORM-CARD --->
+
+                    </div> <!--/SIDEBAR-->
+
+                    <div class="main-col">
+                        <div class="table-card">
+
+                            <div class="form-header">
+                                <h2 class="form-title">Tarefas Cadastradas</h2>
+                                <button onclick="criarTabelaTarefas()" class="btn-refresh"><i
+                                        class="fas fa-sync-alt"></i> Atualizar</button>
+
+                            </div> <!-- /FORM-HEADER -->
+
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr class="table-head-row">
+                                            <th>ID</th>
+                                            <th>Título / Descrição</th>
+                                            <th class="criado_em">Criado em: </th>
+                                            <th class="text-center">Ações</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="tabela-corpo">
+                                        <tr>
+                                            <td colspan="4" class="empty-state">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                <br>
+                                                Carregando dados...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div> <!--TABLE-->
+
+                        </div> <!-- TABLE-CARD  -->
+
+                    </div> <!-- MAIN-COL  -->
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast-container"></div>
+
+    <script type="module" src="./script.js"></script>
+
+
+</body>
+
+</html>
