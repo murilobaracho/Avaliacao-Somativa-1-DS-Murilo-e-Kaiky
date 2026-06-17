@@ -22,7 +22,7 @@ formTarefa.reset();
 document.getElementById('tarefa-id').value = '';
 
 formTitulo.textContent = "Criar Tarefa";
-btnSalvarText.textContent = "Criar Tarefa";
+btnSalvarText.textContent = "Salvar Tarefa";
 btnCancelar.classList.add('hidden');
 
 }
