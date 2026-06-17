@@ -21,7 +21,7 @@ function limparFormulario() {
 formTarefa.reset();
 document.getElementById('tarefa-id').value = '';
 
-formTitulo.textContent = "Criar Tarefa";
+formTitulo.textContent = "Nova Tarefa";
 btnSalvarText.textContent = "Salvar Tarefa";
 btnCancelar.classList.add('hidden');
 
