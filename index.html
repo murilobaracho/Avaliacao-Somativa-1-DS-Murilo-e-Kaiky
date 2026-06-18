@@ -45,6 +45,20 @@
 
                                 <!-- status Tarefa  -->
                                 <div class="form-group">
+                                    <label class="form-label" for="tarefa-urgencia">Urgência <span class="required">*</span></label>
+                                    <select id="tarefa-urgencia" class="form-control" required>
+                                        <option value="urgente">Urgente</option>
+                                        <option value="pouco urgente">Pouco urgente</option>
+                                        <option value="nao urgente" selected>Não urgente</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="filtro-data">Filtrar por data</label>
+                                    <input type="date" id="filtro-data" class="form-control">
+                                </div>
+
+                                <div class="form-group">
 
                                     <button type="submit" id="btn-salvar" class="btn-submit">
                                         <i class="fas fa-save"></i>
@@ -74,14 +88,14 @@
                                         <tr class="table-head-row">
                                             <th>ID</th>
                                             <th>Título / Descrição</th>
-                                            <th class="criado_em">Criado em: </th>
+                                            <th>Urgência</th><th class="criado_em">Criado em: </th>
                                             <th class="text-center">Ações</th>
                                         </tr>
                                     </thead>
 
                                     <tbody id="tabela-corpo">
                                         <tr>
-                                            <td colspan="4" class="empty-state">
+                                            <td colspan="5" class="empty-state">
                                                 <i class="fas fa-spinner fa-spin"></i>
                                                 <br>
                                                 Carregando dados...

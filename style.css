@@ -102,6 +102,27 @@ Estrutura Principal (Novo)
     background-color: var(--indigo-700);
 }
 
+.span-urgente {
+     background:#dc2626;
+     color:#fff;
+     padding:4px 8px;
+     border-radius:6px;
+}
+
+.span-pouco-urgente { 
+    background:#facc15;
+    color:#000;
+    padding:4px 8px;
+    border-radius:6px;
+}
+
+.span-nao-urgente {
+    background:#16a34a;
+    color:#fff;
+    padding:4px 8px;
+    border-radius:6px;
+}
+
 .btn-config-secondary {
     padding: 0.5rem 1rem;
     background-color: var(--slate-200);

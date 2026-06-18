@@ -66,7 +66,12 @@ setTimeout(() => {
 //=================================================
 
 async function criarTabelaTarefas() {
-const dados = await consultarDiretoComFetch();
+let dados = await consultarDiretoComFetch();
+
+const filtroData = document.getElementById("filtro-data")?.value;
+if (filtroData) {
+ dados = dados.filter(tarefa => tarefa.criado_em && tarefa.criado_em.startsWith(filtroData));
+}
 
 tabelaTarefa.innerHTML = '';
 
@@ -91,8 +96,23 @@ dados.forEach(tarefa => {
         hour: '2-digit',
         minute: '2-digit',
         hour12: false,
+        timezone: 'America/Sao_Paulo'
         }).replace(',', '')
 
+
+    let badgeUrgencia='';
+
+if(tarefa.urgencia==='urgente'){
+    badgeUrgencia='<span class="span-urgente">Urgente</span>'
+}
+
+else if(tarefa.urgencia==='pouco urgente') {
+    badgeUrgencia='<span class="span-pouco-urgente">Pouco urgente</span>'
+}
+
+else{
+    badgeUrgencia='<span class="span-nao-urgente">Não urgente</span>'
+}
 
     linha.innerHTML = `
         <td class="cell-id">#${tarefa.id}</td>
@@ -102,12 +122,13 @@ dados.forEach(tarefa => {
             <p class="cell-descricao">${tarefa.descricao}</p>
         </td>
     
+        <td>${badgeUrgencia}</td>
         <td class="date"><p class="badge-date">${criado_em}</p></td>
 
         <td>
             <div class="action-container">
                 <button
-                    onclick="prepararEdicao(${tarefa.id}, '${tarefa.titulo}', '${tarefa.descricao}', '${tarefa.criado_em}')"
+                    onclick="prepararEdicao(${tarefa.id}, '${tarefa.titulo}', '${tarefa.descricao}', '${tarefa.urgencia}', '${tarefa.criado_em}')"
                     class="btn-action btn-edit"
                     title="Editar">
                     <i class="fas fa-pen"></i>
@@ -132,10 +153,11 @@ window.criarTabelaTarefas = criarTabelaTarefas;
 
 criarTabelaTarefas();
 
-window.prepararEdicao = function (id, titulo, descricao, criado_em) {
+window.prepararEdicao = function (id, titulo, descricao, urgencia, criado_em) {
 document.getElementById('tarefa-id').value = id;
 document.getElementById('tarefa-titulo').value = titulo;
 document.getElementById('tarefa-descricao').value = descricao;
+document.getElementById('tarefa-urgencia').value = urgencia;
 
 const campoData = document.getElementById('tarefa-criado_em');
 if (campoData) {
@@ -154,17 +176,18 @@ event.preventDefault();
 const id = document.getElementById('tarefa-id').value;
 const titulo = document.getElementById('tarefa-titulo').value;
 const descricao = document.getElementById('tarefa-descricao').value;
+const urgencia = document.getElementById('tarefa-urgencia').value;
 
 let sucesso = false;
 
 if (id) {
-    sucesso = await sqlAtualizarTarefa(id, titulo, descricao);
+    sucesso = await sqlAtualizarTarefa(id, titulo, descricao, urgencia);
 
     if (sucesso) {
         mostrarToast("Tarefa atualizada com sucesso!", "success");
     }
 } else {
-    sucesso = await insertTarefa(titulo, descricao);
+    sucesso = await insertTarefa(titulo, descricao, urgencia);
 
     if (sucesso) {
         mostrarToast("Tarefa cadastrada com sucesso!", "success");
@@ -194,3 +217,10 @@ const sucesso = await sqlDeletarTarefa(id);
 
 formTarefa.addEventListener('submit', lidarComEnvioDoFormulario);
 btnCancelar.addEventListener('click', limparFormulario);
+
+
+const filtroData = document.getElementById('filtro-data');
+
+if (filtroData) {
+    filtroData.addEventListener('change', criarTabelaTarefas);
+}

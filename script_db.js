@@ -47,10 +47,10 @@ async function executarQueryNeon(querySQL, parametros = []) {
 // CRUD
 
 //c
-export async function insertTarefa(titulo, descricao) {
-    const query = 'INSERT INTO tarefas (titulo, descricao) VALUES ($1, $2) RETURNING *';
+export async function insertTarefa(titulo, descricao, urgencia) {
+    const query = 'INSERT INTO tarefas (titulo, descricao, urgencia) VALUES ($1, $2, $3) RETURNING *';
 
-    const params = [titulo, descricao]
+    const params = [titulo, descricao, urgencia]
 
         // Linhas que o RETURNING irá retornar
     const linhas = await executarQueryNeon(query, params);
@@ -72,10 +72,10 @@ export async function consultarDiretoComFetch() {
 };
 
 //U
-export async function sqlAtualizarTarefa(id, titulo, descricao) {
-    const query = 'UPDATE tarefas SET titulo = $1, descricao = $2 WHERE id = $3 RETURNING *';
+export async function sqlAtualizarTarefa(id, titulo, descricao, urgencia) {
+    const query = 'UPDATE tarefas SET titulo = $1, descricao = $2, urgencia = $3 WHERE id = $4 RETURNING *';
 
-    const params = [titulo, descricao, id];
+    const params = [titulo, descricao, urgencia, id];
 
     // Executa as linhas que a query de update vai retornar chamando a função executarQueryNeon
     const linhas = await executarQueryNeon(query, params);
