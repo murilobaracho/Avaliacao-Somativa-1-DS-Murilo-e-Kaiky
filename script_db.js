@@ -16,7 +16,7 @@ async function executarQueryNeon(querySQL, parametros = []) {
             method: 'POST',
             headers: { 
                 'neon-connection-string': DATABASE_URL,
-                'Content-Type': 'application/json' // Corrigido 'aplication' para 'application'
+                'Content-Type': 'application/json'
             },
 
             //corpo da requisição
